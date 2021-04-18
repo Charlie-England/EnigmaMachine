@@ -49,6 +49,34 @@ namespace EnigmaMachine
                 RefType.Add(24, 8);
                 RefType.Add(25, 7);
                 RefType.Add(26, 4);
+            } else if (Type.Equals("B"))
+            {
+                RefType.Add(1, 25);
+                RefType.Add(2, 18);
+                RefType.Add(3, 21);
+                RefType.Add(4, 8);
+                RefType.Add(5, 17);
+                RefType.Add(6, 19);
+                RefType.Add(7, 12);
+                RefType.Add(8, 4);
+                RefType.Add(9, 16);
+                RefType.Add(10, 24);
+                RefType.Add(11, 14);
+                RefType.Add(12, 7);
+                RefType.Add(13, 15);
+                RefType.Add(14, 11);
+                RefType.Add(15, 13);
+                RefType.Add(16, 9);
+                RefType.Add(17, 5);
+                RefType.Add(18, 2);
+                RefType.Add(19, 6);
+                RefType.Add(20, 26);
+                RefType.Add(21, 3);
+                RefType.Add(22, 23);
+                RefType.Add(23, 22);
+                RefType.Add(24, 10);
+                RefType.Add(25, 1);
+                RefType.Add(26, 20);
             }
 
             return RefType;

@@ -29,7 +29,7 @@ namespace EnigmaMachine
             RotorOffset++;
             if (RotorOffset == 27) //this is the char after z
             {
-                RotorOffset = 1;
+                RotorOffset = 0;
             }
 
             //Check for flip over point
@@ -44,19 +44,54 @@ namespace EnigmaMachine
             return false;
         }
 
-        public int RotorWireEncrypt(int input)
+        public int RotorWireEncrypt(int input, char direction)
         {
-            input+= RotorOffset;
+            //Console.WriteLine($"{Name} in << {input}");
 
-            if (input > 26)
+            input += RotorOffset; //Add to the input due to offsetting of the rotor
+            //Console.WriteLine($"{Name} Offset Convert << {input}");
+
+
+            if (input > 26) //If the input is greater than 26, find the remainder (due to rotors being circular with only 26 places)
             {
                 input = input % 26;
             }
 
-            return RotorWiring[input];
+            int encryptOut = 0;
+            if (direction == 'f') //If the direction is forward, do normal RotorWiring
+            {
+                encryptOut = RotorWiring[input];
+            } else if (direction == 'r') //If the position is reverse, use method to find the value and return the key of that value simulating signal traveling back through
+            {
+                encryptOut = FindReverseWiring(input); 
+            }
+            //Console.WriteLine($"{Name} encrypt change {encryptOut}");
+            encryptOut -= RotorOffset; //the output needs to be modified if the rotor is offset at all.
+
+            if (encryptOut < 0)
+            {
+                encryptOut = 26 % encryptOut;
+            } else if (encryptOut == 0)
+            {
+                encryptOut = 26;
+            }
+            //Console.WriteLine($"{Name} number going into next rotor {encryptOut}");
+            //Console.WriteLine();
+            return encryptOut;
         }
 
+        private int FindReverseWiring(int input)
+        {
+            foreach (KeyValuePair<int, int> kvp in RotorWiring)
+            {
+                if (kvp.Value == input)
+                {
+                    return kvp.Key;
+                }
+            }
 
+            return -1;
+        }
 
         private Dictionary<int, int> GetRotorWiring()
         {

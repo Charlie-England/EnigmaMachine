@@ -27,15 +27,16 @@ namespace EnigmaMachine
             //First, uses FlipRotors to set rotor positions
             //Then uses the RotorWireEncrypt methods on each rotor to get the return char value
             FlipRotors();
-            int curChar = 1;
+            int curChar = Convert.ToInt32(i)-96;
 
-            curChar = Rotor1.RotorWireEncrypt(curChar);
-            curChar = Rotor2.RotorWireEncrypt(curChar);
-            curChar = Rotor3.RotorWireEncrypt(curChar);
+            curChar = Rotor1.RotorWireEncrypt(curChar, 'f');
+            curChar = Rotor2.RotorWireEncrypt(curChar, 'f');
+            curChar = Rotor3.RotorWireEncrypt(curChar, 'f');
             curChar = Reflector.GetReflection(curChar);
-            curChar = Rotor3.RotorWireEncrypt(curChar);
-            curChar = Rotor2.RotorWireEncrypt(curChar);
-            curChar = Rotor1.RotorWireEncrypt(curChar);
+            curChar = Rotor3.RotorWireEncrypt(curChar, 'r');
+            curChar = Rotor2.RotorWireEncrypt(curChar, 'r');
+            curChar = Rotor1.RotorWireEncrypt(curChar, 'r');
+
 
             return Convert.ToChar(curChar+96);
 
