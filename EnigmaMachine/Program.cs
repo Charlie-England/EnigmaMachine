@@ -18,48 +18,18 @@ namespace EnigmaMachine
 
             RotorGroup rg = new RotorGroup(rotor1, rotor2, rotor3, reflector);
 
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine();
+            int count = 0;
+            foreach (char c in "hellohowareyoudoingimdoingfinethankyou")
+            {
+                if (count == 5)
+                {
+                    Console.Write(" ");
+                    count = 0;
+                }
+                count++;
 
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine();
-
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine();
-
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine();
-
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine();
-
-
-
-            /*            Console.WriteLine(rg.RotorEncrypt('b'));
-                        Console.WriteLine(rg.RotorEncrypt('d'));
-                        Console.WriteLine(rg.RotorEncrypt('z'));
-                        Console.WriteLine(rg.RotorEncrypt('g'));
-                        Console.WriteLine(rg.RotorEncrypt('o'));*/
+                Console.Write(rg.RotorEncrypt(c));
+            }
 
         }
     }
