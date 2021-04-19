@@ -10,10 +10,10 @@ namespace EnigmaMachine
     {
         public string Name { get; set; }
         public int RotorOffset { get; set; }
-        public int[] FlipOverPoint;
+        public List<int> FlipOverPoint;
         private Dictionary<int, int> RotorWiring;
 
-        public Rotor(string _name, int _currentrotorstatus, int[] _flipoverpoint)
+        public Rotor(string _name, int _currentrotorstatus, List<int> _flipoverpoint)
         {
             Name = _name;
             RotorOffset = _currentrotorstatus;
@@ -26,36 +26,23 @@ namespace EnigmaMachine
             //Iterate the CurrentRotorStatus by 1, checking for flip over and return 'f' if next rotor should flip over, return 'c' if not
 
             //Iterate RotorStatus by 1, reset to a if needed.
+            RotorOffset %= 27; //Make sure RotorOffset is always 1-26;
             RotorOffset++;
-            if (RotorOffset == 27) //this is the char after z
-            {
-                RotorOffset = 0;
-            }
+
 
             //Check for flip over point
-            foreach (int flipNum in FlipOverPoint)
-            {
-                if (flipNum == RotorOffset)
-                {
-                    return true;
-                }
-            }
+            return FlipOverPoint.Contains(RotorOffset);
 
-            return false;
         }
 
         public int RotorWireEncrypt(int input, char direction)
         {
-            //Console.WriteLine($"{Name} in << {input}");
-
-            input += RotorOffset; //Add to the input due to offsetting of the rotor
-            //Console.WriteLine($"{Name} Offset Convert << {input}");
-
-
-            if (input > 26) //If the input is greater than 26, find the remainder (due to rotors being circular with only 26 places)
+            input = (input+RotorOffset) % 26; //Add Offset to input to get actual input number, mod by 26 to ensure it is between 1-26
+            if (input == 0)
             {
-                input = input % 26;
+                input = 26;
             }
+
 
             int encryptOut = 0;
             if (direction == 'f') //If the direction is forward, do normal RotorWiring
@@ -63,20 +50,23 @@ namespace EnigmaMachine
                 encryptOut = RotorWiring[input];
             } else if (direction == 'r') //If the position is reverse, use method to find the value and return the key of that value simulating signal traveling back through
             {
+
                 encryptOut = FindReverseWiring(input); 
             }
-            //Console.WriteLine($"{Name} encrypt change {encryptOut}");
-            encryptOut -= RotorOffset; //the output needs to be modified if the rotor is offset at all.
 
+            if (encryptOut == -100)
+            {
+                throw new Exception("Argument out of range");
+            }
+            encryptOut = encryptOut - RotorOffset; //the output needs to be modified if the rotor is offset at all.
             if (encryptOut < 0)
             {
-                encryptOut = 26 % encryptOut;
+                encryptOut = 26 + encryptOut;
             } else if (encryptOut == 0)
             {
                 encryptOut = 26;
             }
-            //Console.WriteLine($"{Name} number going into next rotor {encryptOut}");
-            //Console.WriteLine();
+
             return encryptOut;
         }
 
@@ -90,7 +80,7 @@ namespace EnigmaMachine
                 }
             }
 
-            return -1;
+            return -100;
         }
 
         private Dictionary<int, int> GetRotorWiring()

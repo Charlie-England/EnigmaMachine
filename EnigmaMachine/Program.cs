@@ -7,9 +7,9 @@ namespace EnigmaMachine
     {
         static void Main(string[] args)
         {
-            int[] fop1 = { 18, };
-            int[] fop2 = { 6, };
-            int[] fop3 = { 23, };
+            List<int> fop1 = new List<int> { 17, }; //rotor FoP are 0-25 (offset amounts) so If stepping from V-W it would normally be 22-23 but will be stepping 21-22 with 0 base
+            List<int> fop2 = new List<int> { 5, };
+            List<int> fop3 = new List<int> { 22, };
 
             Rotor rotor1 = new Rotor("Rotor III", 0, fop3);
             Rotor rotor2 = new Rotor("Rotor II", 0, fop2);
@@ -23,12 +23,43 @@ namespace EnigmaMachine
             Console.WriteLine(rg.RotorEncrypt('a'));
             Console.WriteLine(rg.RotorEncrypt('a'));
             Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine();
 
-            /*            Console.WriteLine(rg.RotorEncrypt('p'));
-                        Console.WriteLine(rg.RotorEncrypt('x'));
-                        Console.WriteLine(rg.RotorEncrypt('v'));
-                        Console.WriteLine(rg.RotorEncrypt('i'));
-                        Console.WriteLine(rg.RotorEncrypt('g'));*/
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine();
+
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine();
+
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine();
+
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine(rg.RotorEncrypt('a'));
+            Console.WriteLine();
+
+
+
+            /*            Console.WriteLine(rg.RotorEncrypt('b'));
+                        Console.WriteLine(rg.RotorEncrypt('d'));
+                        Console.WriteLine(rg.RotorEncrypt('z'));
+                        Console.WriteLine(rg.RotorEncrypt('g'));
+                        Console.WriteLine(rg.RotorEncrypt('o'));*/
 
         }
     }
