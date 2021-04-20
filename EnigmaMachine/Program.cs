@@ -19,17 +19,40 @@ namespace EnigmaMachine
             RotorGroup rg = new RotorGroup(rotor1, rotor2, rotor3, reflector);
 
             int count = 0;
-            foreach (char c in "hellohowareyoudoingimdoingfinethankyou")
+            int count2 = 0;
+            foreach (char c in "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             {
+                count2++;
                 if (count == 5)
                 {
-                    Console.Write(" ");
+                    Console.WriteLine();
                     count = 0;
                 }
                 count++;
 
                 Console.Write(rg.RotorEncrypt(c));
             }
+            Console.WriteLine();
+
+            count = 0;
+            foreach (char c in "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            {
+                count2++;
+                if (count == 5)
+                {
+                    Console.WriteLine();
+                    count = 0;
+                }
+                count++;
+
+                if (count2 == 100)
+                {
+                    Console.Write("");
+                }
+
+                Console.Write(rg.RotorEncrypt(c));
+            }
+
 
         }
     }

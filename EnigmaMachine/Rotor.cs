@@ -26,8 +26,8 @@ namespace EnigmaMachine
             //Iterate the CurrentRotorStatus by 1, checking for flip over and return 'f' if next rotor should flip over, return 'c' if not
 
             //Iterate RotorStatus by 1, reset to a if needed.
-            RotorOffset++;
             RotorOffset %= 26; //Make sure RotorOffset is always 1-26;
+            RotorOffset++;
 
 
             //Check for flip over point

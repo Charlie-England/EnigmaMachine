@@ -55,6 +55,7 @@ namespace EnigmaMachine
             if (flipCheck)
             {
                 Rotor3.IterateOne();
+                Rotor2.IterateOne();
             }
         }
     }
