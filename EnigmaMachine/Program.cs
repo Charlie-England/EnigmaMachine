@@ -18,18 +18,10 @@ namespace EnigmaMachine
 
             RotorGroup rg = new RotorGroup(rotor1, rotor2, rotor3, reflector);
 
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-            Console.WriteLine(rg.RotorEncrypt('a'));
-
-            /*            Console.WriteLine(rg.RotorEncrypt('p'));
-                        Console.WriteLine(rg.RotorEncrypt('x'));
-                        Console.WriteLine(rg.RotorEncrypt('v'));
-                        Console.WriteLine(rg.RotorEncrypt('i'));
-                        Console.WriteLine(rg.RotorEncrypt('g'));*/
-
+            foreach (char c in "aaaaa")
+            {
+                Console.Write(rg.RotorEncrypt(c));
+            }
         }
     }
 }

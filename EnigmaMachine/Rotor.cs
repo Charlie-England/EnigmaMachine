@@ -51,7 +51,7 @@ namespace EnigmaMachine
             input += RotorOffset; //Add to the input due to offsetting of the rotor
             //Console.WriteLine($"{Name} Offset Convert << {input}");
 
-
+            //input +=Rotoroffset % 26
             if (input > 26) //If the input is greater than 26, find the remainder (due to rotors being circular with only 26 places)
             {
                 input = input % 26;
