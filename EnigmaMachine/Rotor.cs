@@ -13,6 +13,11 @@ namespace EnigmaMachine
         public List<int> FlipOverPoint;
         private Dictionary<int, int> RotorWiring;
 
+        public Rotor()
+        {
+            throw new ArgumentException("Invalid Argument Parameters");
+        }
+
         public Rotor(string _name, int _currentrotorstatus, List<int> _flipoverpoint)
         {
             Name = _name;
