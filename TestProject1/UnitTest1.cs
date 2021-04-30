@@ -220,6 +220,12 @@ namespace TestProject1
             Assert.AreEqual(r1.IterateOne(), false);
             Assert.AreEqual(r1.IterateOne(), true);
         }
+
+        [TestMethod]
+        public void TestDoubleFlipOverMid1()
+        {
+            //Add test to check for double flip over of middle rotor
+        }
     }
 
     [TestClass]
