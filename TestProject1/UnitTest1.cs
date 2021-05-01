@@ -232,9 +232,83 @@ namespace TestProject1
     public class TestLargerEncoding
     {
         [TestMethod]
-        public void TestLargeEncoding1()
+        public void TestLargeEncoding1_30()
         {
+            List<int> rotorOrder = new List<int>() { 1, 2, 3 };
+            List<int> rotorStartPos = new List<int>() { 0, 0, 0 };
+
+            RotorGroup rg = CreateTestRotorGroup.CreateTestRotor(rotorOrder, rotorStartPos);
+
+            const string testInput = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            const string expectedOut = "bdzgowcxltksbtmcdlpbmuqofxyhcx";
+
+            string actualOut = "";
+
+            foreach (char c in testInput)
+            {
+                actualOut += rg.RotorEncrypt(c);
+            }
+
+            Assert.AreEqual(expectedOut, actualOut);
 
         }
     }
+
+    public class CreateTestRotorGroup
+    {
+        public static RotorGroup CreateTestRotor(List<int> rotorOrder, List<int> rotorStartPos)
+        {
+            List<int> fop1 = new List<int> { 17, };
+            List<int> fop2 = new List<int> { 5, };
+            List<int> fop3 = new List<int> { 22, };
+
+            Rotor rotorOne = null;
+            Rotor rotorTwo = null;
+            Rotor rotorThree = null;
+
+            int pos = 1;
+            foreach (int rotor in rotorOrder)
+            {
+                string rotorName = "";
+                List<int> fopCur = null;
+
+                switch (rotor)
+                {
+                    case 1:
+                        rotorName = "Rotor I";
+                        fopCur = fop1;
+                        break;
+                    case 2:
+                        rotorName = "Rotor II";
+                        fopCur = fop2;
+                        break;
+                    case 3:
+                        fopCur = fop3;
+                        rotorName = "Rotor III";
+                        break;
+                }
+
+                switch (pos)
+                {
+                    case 1:
+                        rotorOne = new Rotor(rotorName, rotorStartPos[pos], fopCur);
+                        break;
+                    case 2:
+                        rotorTwo = new Rotor(rotorName, rotorStartPos[pos], fopCur);
+                        break;
+                    case 3:
+                        rotorThree = new Rotor(rotorName, rotorStartPos[pos], fopCur);
+                        break;
+                }
+                pos++;
+            }
+
+            Reflector reflector = new Reflector("B");
+
+            RotorGroup rg = new RotorGroup(rotorOne, rotorTwo, rotorThree, reflector);
+
+            return rg;
+        }
+    }
+    
 }
